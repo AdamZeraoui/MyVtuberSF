@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -35,6 +37,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private bool $isVerified = false;
+
+    #[ORM\Column(length: 100)]
+    private ?string $email = null;
+
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Agence $agence = null;
+
+    /**
+     * @var Collection<int, Streamer>
+     */
+    #[ORM\ManyToMany(targetEntity: Streamer::class, inversedBy: 'users')]
+    private Collection $recrute;
+
+    /**
+     * @var Collection<int, Succes>
+     */
+    #[ORM\ManyToMany(targetEntity: Succes::class, inversedBy: 'users')]
+    private Collection $debloque;
+
+    public function __construct()
+    {
+        $this->recrute = new ArrayCollection();
+        $this->debloque = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -119,6 +146,78 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getAgence(): ?Agence
+    {
+        return $this->agence;
+    }
+
+    public function setAgence(Agence $agence): static
+    {
+        $this->agence = $agence;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Streamer>
+     */
+    public function getRecrute(): Collection
+    {
+        return $this->recrute;
+    }
+
+    public function addRecrute(Streamer $recrute): static
+    {
+        if (!$this->recrute->contains($recrute)) {
+            $this->recrute->add($recrute);
+        }
+
+        return $this;
+    }
+
+    public function removeRecrute(Streamer $recrute): static
+    {
+        $this->recrute->removeElement($recrute);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Succes>
+     */
+    public function getDebloque(): Collection
+    {
+        return $this->debloque;
+    }
+
+    public function addDebloque(Succes $debloque): static
+    {
+        if (!$this->debloque->contains($debloque)) {
+            $this->debloque->add($debloque);
+        }
+
+        return $this;
+    }
+
+    public function removeDebloque(Succes $debloque): static
+    {
+        $this->debloque->removeElement($debloque);
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\StreamerRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,6 +24,24 @@ class Streamer
 
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $rarity = null;
+
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'recrute')]
+    private Collection $users;
+
+    /**
+     * @var Collection<int, Chambre>
+     */
+    #[ORM\OneToMany(targetEntity: Chambre::class, mappedBy: 'streamer')]
+    private Collection $chambre;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+        $this->chambre = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -60,6 +80,63 @@ class Streamer
     public function setRarity(?string $rarity): static
     {
         $this->rarity = $rarity;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addRecrute($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeRecrute($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Chambre>
+     */
+    public function getChambre(): Collection
+    {
+        return $this->chambre;
+    }
+
+    public function addChambre(Chambre $chambre): static
+    {
+        if (!$this->chambre->contains($chambre)) {
+            $this->chambre->add($chambre);
+            $chambre->setStreamer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChambre(Chambre $chambre): static
+    {
+        if ($this->chambre->removeElement($chambre)) {
+            // set the owning side to null (unless already changed)
+            if ($chambre->getStreamer() === $this) {
+                $chambre->setStreamer(null);
+            }
+        }
 
         return $this;
     }
