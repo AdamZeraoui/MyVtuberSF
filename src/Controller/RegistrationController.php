@@ -36,6 +36,8 @@ class RegistrationController extends AbstractController
             // encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
 
+            $user->setEmail($form->get('email')->getData());
+
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -43,7 +45,7 @@ class RegistrationController extends AbstractController
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('adam.zeraoui@hotmail.fr', 'My Vtuber'))
-                    ->to((string) $user->getUserIdentifier())
+                    ->to((string) $user->getEmail())
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
