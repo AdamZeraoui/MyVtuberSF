@@ -14,7 +14,7 @@ class HomeController extends AbstractController
     {
         // Cela va rendre un template Twig pour la page d'accueil
         return $this->render('home/index.html.twig', [
-            "message" => "Bienvenue sur My Vtuber", "inscription"=>"S'inscrire", "profil"=>"Profil", "agence"=> "Agence", "chambre"=>"Chambre"
+            'controller_name' => 'HomeController',
         ]
     );}
 }

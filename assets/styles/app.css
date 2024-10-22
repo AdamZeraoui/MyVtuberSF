@@ -1,0 +1,152 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* S'assurer que les éléments commencent en haut */
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: pink;
+}
+
+.header-image {
+    width: 100%;
+    max-height: 30vh; /* Limiter la hauteur de l'image d'en-tête */
+    overflow: hidden;
+}
+
+.header-image img {
+    width: 100%;
+    height: auto;
+}
+
+.main-content {
+    width: calc(100% - 80px);
+    flex-direction: column;
+    box-sizing: content-box;
+    overflow: hidden;
+}
+
+h1 {
+    text-align: center; /* Centre le texte dans les h1 */
+    width: 100%; /* Assure que le h1 occupe toute la largeur */
+}
+
+.form-control {
+    max-width: 400px; /* Ajuste la largeur maximale selon tes besoins */
+    width: 100%; /* Assure que le champ occupe toute la largeur de son conteneur */
+    margin: 0 auto;
+}
+
+.pass {
+
+    margin-top: 5px;
+}
+
+.sign-button{
+    margin-top: 10px;
+}
+
+.nav-container {
+    max-height: 100vh;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 80px;
+    background-color: #ffffff;
+    z-index: 1000;
+}
+
+.navbar .navbar-nav {
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.navbar .nav-link {
+    padding: 10px;
+    color: #000;
+    font-size: 18px;
+}
+
+.navbar .nav-link:hover {
+    background-color: #e2e6ea;
+}
+
+.navbar .nav-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link i {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-right: 5px;
+    color: #000;
+    font-size: 20px;
+}
+
+.carousel {
+    width: 100%;
+    height: calc(100vh - 15vh); /* Adapter la hauteur du carrousel pour tenir dans l'écran */
+    max-height: 80vh; /* Limite le carrousel pour qu'il prenne jusqu'à 70% de la hauteur */
+    position: relative;
+}
+
+.carousel-item {
+    height: 100%;
+    max-height: 80vh;
+}
+
+.carousel-item img {
+    max-width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+}
+
+.button-carousel {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-carousel.left {
+    left: 150px;
+}
+
+.button-carousel.right {
+    right: 150px;
+}
+
+.button-carousel:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}

@@ -3,37 +3,34 @@
 {% block title %}Page d'Accueil{% endblock %}
 
 {% block body %}
-<h1>{{ message }}</h1>
-<p>Bienvenue sur la page d'accueil de notre site !</p>
 
+<h1>Bannière du moment</h1>
 
 <div id="carouselExampleAutoplaying" class="carousel slide mx-auto" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="{{ asset('Img/V.jpg') }}" class="d-block mx-auto w-10" alt="The Hierophant">
+            <img src="{{ asset('Img/V.jpg') }}" class="d-block" alt="The Hierophant">
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('Img/XVI.jpg') }}" class="d-block mx-auto w-10" alt="The Tower">
+            <img src="{{ asset('Img/XVI.jpg') }}" class="d-block" alt="The Tower">
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('Img/IV.jpg') }}" class="d-block mx-auto w-10" alt="The Emperor">
+            <img src="{{ asset('Img/IV.jpg') }}" class="d-block" alt="The Emperor">
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('Img/XX.jpg') }}" class="d-block mx-auto w-10" alt="Judgement">
+            <img src="{{ asset('Img/XX.jpg') }}" class="d-block" alt="Judgement">
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('Img/VI.jpg') }}" class="d-block mx-auto w-10" alt="The Lovers">
+            <img src="{{ asset('Img/VI.jpg') }}" class="d-block" alt="The Lovers">
         </div>
     </div>
-    <button class="carousel-control-prev m-5 p-5 bg-light" type="button" data-bs-target="#carouselExampleAutoplaying"
+    <button class=" button-carousel left" type="button" data-bs-target="#carouselExampleAutoplaying"
         data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden text-secondary">Previous</span>
+        <span class="icon-left" aria-hidden="true"><i class="fa-solid fa-arrow-left"></i></span>
     </button>
-    <button class="carousel-control-next m-5 p-5 bg-light" type="button" data-bs-target="#carouselExampleAutoplaying"
+    <button class=" button-carousel right" type="button" data-bs-target="#carouselExampleAutoplaying"
         data-bs-slide="next">
-        <span class="visually-hidden text-secondary">Next</span>
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="icon-right" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
     </button>
 </div>
 
