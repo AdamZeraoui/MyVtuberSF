@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Streamer;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,6 +57,16 @@ class StreamerController extends AbstractController
             if ($tirageStreamer) {
                 $img =$tirageStreamer->getPseudo();
                 $message = "Le streamer tiré au sort est : {$tirageStreamer->getPseudo()} (ID: $tirageStreamerId) avec la rareté {$tirageStreamer->getRarity()}.";
+
+                $user = $this->getUser();
+                
+                if ($user) {
+                    
+                    $user->addRecrute($tirageStreamer); //c'est une fausse erreur.
+
+                    $this->entityManager->persist($user);
+                    $this->entityManager->flush();
+                }
             } else {
                 $message = "Aucun streamer trouvé.";
                 $img="null";
