@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StreamerController!{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+    
+    <form action="{{ path('app_streamer') }}" method="POST" data-turbo="false">
+        <button type="submit">Tirer un Streamer</button>
+    </form>
+
+    {# Afficher le résultat du tirage #}
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}
