@@ -23,6 +23,7 @@ class StreamerController extends AbstractController
     public function index(Request $request): Response
     {
         $message = null;
+        $img=null;
 
         // Vérifier si le formulaire a été soumis
         if ($request->isMethod('POST')) {
@@ -39,10 +40,10 @@ class StreamerController extends AbstractController
             
             // Probabilités pour chaque tier
             $probabilities = [
-                'S' => 10, // 10%
-                'A' => 20, // 20%
+                'S' => 5, // 5%
+                'A' => 15, // 15%
                 'B' => 30, // 30%
-                'C' => 40, // 40%
+                'C' => 50, // 50%
             ];
             
             // Tirage au sort
@@ -53,17 +54,20 @@ class StreamerController extends AbstractController
 
             
             if ($tirageStreamer) {
+                $img =$tirageStreamer->getPseudo();
                 $message = "Le streamer tiré au sort est : {$tirageStreamer->getPseudo()} (ID: $tirageStreamerId) avec la rareté {$tirageStreamer->getRarity()}.";
             } else {
                 $message = "Aucun streamer trouvé.";
+                $img="null";
             }
 
-
+            
         }
 
 
         return $this->render('streamer/index.html.twig', [
-            'message' => $message,
+            'message' => $message,'img'=>$img
+            ,
         ]);
     }
 
