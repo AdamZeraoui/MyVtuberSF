@@ -75,11 +75,10 @@ h1 {
 
 .navbar .navbar-nav {
     flex-direction: column;
-    padding-top: 20px;
+    padding-top: 5px;
 }
 
 .navbar .nav-link {
-    padding: 10px;
     color: #000;
     font-size: 18px;
 }
@@ -89,15 +88,16 @@ h1 {
 }
 
 .navbar .nav-item {
+    
+    padding-left: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .nav-link i {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    margin-right: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     color: #000;
     font-size: 20px;
 }

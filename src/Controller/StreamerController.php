@@ -20,7 +20,7 @@ class StreamerController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/streamer', name: 'app_streamer')]
+    #[Route('/gacha', name: 'gacha')]
     public function index(Request $request): Response
     {
         $message = null;
@@ -76,7 +76,7 @@ class StreamerController extends AbstractController
         }
 
 
-        return $this->render('streamer/index.html.twig', [
+        return $this->render('gacha/index.html.twig', [
             'message' => $message,'img'=>$img
             ,
         ]);
@@ -118,7 +118,7 @@ class StreamerController extends AbstractController
 
 
         // Cela va rendre un template Twig pour la page d'accueil
-        return $this->render('streamer/allStreamer/index.html.twig', [
+        return $this->render('gacha/allStreamer/index.html.twig', [
             'controller_name' => 'AllStreamerController',
             'streamers' => $streamers,
             'groupedStreamers' => $groupedStreamers,
