@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StreamerController!{% endblock %}
+
+
+
+{% block body %}
+
+
+<div class="streamer-container">
+    {% for rarity, streamers in groupedStreamers %}
+        <h3>Rareté {{ rarity }}</h2>
+        <div class="rarity-group">
+            {% for streamer in streamers %}
+                <div class="streamer-card">
+                    {{ streamer.pseudo }} - Puissance : {{ streamer.stats }}
+                    <img src="Img/{{ streamer.pseudo }}.jpg" alt="Image de {{ streamer.pseudo }}" />
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

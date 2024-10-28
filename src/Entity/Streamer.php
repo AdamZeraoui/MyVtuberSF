@@ -140,4 +140,10 @@ class Streamer
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        // Retourner une représentation textuelle du Streamer, comme son pseudo
+        return $this->getPseudo();
+    }
 }

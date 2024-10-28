@@ -96,4 +96,32 @@ class StreamerController extends AbstractController
         // Tirer un élément au hasard
         return $weightedItems[array_rand($weightedItems)];
     }
+
+    #[Route('/allStreamer', name: 'allStreamer')]
+    public function allStreamers(): Response
+    {
+
+        $streamers = $this->entityManager->getRepository(Streamer::class)->findAll();
+
+    // Regrouper les streamers par rareté
+    $groupedStreamers = [
+        'S' => [],
+        'A' => [],
+        'B' => [],
+        'C' => [],
+    ];
+
+    foreach ($streamers as $streamer) {
+        $rarity = $streamer->getRarity();
+        $groupedStreamers[$rarity][] = $streamer;
+    }
+
+
+        // Cela va rendre un template Twig pour la page d'accueil
+        return $this->render('streamer/allStreamer/index.html.twig', [
+            'controller_name' => 'AllStreamerController',
+            'streamers' => $streamers,
+            'groupedStreamers' => $groupedStreamers,
+        ]
+    );}
 }
