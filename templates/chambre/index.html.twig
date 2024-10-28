@@ -3,18 +3,27 @@
 {% block title %}Hello ChambreController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<h2>Chambre</h2>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/laragon/www/MyVtuberSF/src/Controller/ChambreController.php</code></li>
-        <li>Your template at <code>C:/laragon/www/MyVtuberSF/templates/chambre/index.html.twig</code></li>
-    </ul>
-</div>
+<label for="streamer-select">Choisir un Streamer</label>
+
+<select name="streamer" id="streamer-select">
+
+{% for streamer in streamers %}
+    <option value="{{ streamer.id }}">{{ streamer.pseudo }}</option>
+{% endfor %}
+
+</select>
+
+
+<button id="start-button">Commencer à générer de l'argent</button>
+
+<p>Argent généré : <span id="argent-par-seconde">0</span></p>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/app.js') }}"></script>
 {% endblock %}

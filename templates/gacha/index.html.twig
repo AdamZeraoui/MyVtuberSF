@@ -14,7 +14,9 @@
     {# Afficher le résultat du tirage #}
     {% if message %}
         <p>{{ message }}</p>
+        {% if img != "null" %}
         <img src="Img/{{ img }}.jpg" alt="Image de {{ img }}" />
+        {% endif %}
     {% endif %}
 
 </div>

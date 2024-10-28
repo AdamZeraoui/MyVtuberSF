@@ -25,9 +25,12 @@ class StreamerController extends AbstractController
     {
         $message = null;
         $img=null;
+        $user = $this->getUser();
+        $points = $user->getPoint() ;
+        $price = 550;
 
         // Vérifier si le formulaire a été soumis
-        if ($request->isMethod('POST')) {
+        if ($request->isMethod('POST') && $points > $price) {
 
             $streamers = $this->entityManager->getRepository(Streamer::class)->findAll();
             
@@ -57,8 +60,7 @@ class StreamerController extends AbstractController
             if ($tirageStreamer) {
                 $img =$tirageStreamer->getPseudo();
                 $message = "Le streamer tiré au sort est : {$tirageStreamer->getPseudo()} (ID: $tirageStreamerId) avec la rareté {$tirageStreamer->getRarity()}.";
-
-                $user = $this->getUser();
+                $points = $user->setPoint(($points-$price));
                 
                 if ($user) {
                     
@@ -73,13 +75,21 @@ class StreamerController extends AbstractController
             }
 
             
+        } else if($points < $price){
+            
+            $message = "Vous n'avez pas assez de point pour un tirage. Vous avez :". $points." points. Un tirage coût ". $price." points."; 
+            $img ="null";
+            
+        } else {
+            $message = "Vous avez assez de point pour un tirage. Vous avez :". $points." points. Un tirage coût ". $price ." points."; 
+            $img ="null";
         }
-
-
+        
         return $this->render('gacha/index.html.twig', [
             'message' => $message,'img'=>$img
             ,
         ]);
+        
     }
 
     private function tirageFromArray(array $streamers, array $probabilities): int

@@ -57,6 +57,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Succes::class, inversedBy: 'users')]
     private Collection $debloque;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $point = null;
+
     public function __construct()
     {
         $this->recrute = new ArrayCollection();
@@ -218,6 +221,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeDebloque(Succes $debloque): static
     {
         $this->debloque->removeElement($debloque);
+
+        return $this;
+    }
+
+    public function getPoint(): ?int
+    {
+        return $this->point;
+    }
+
+    public function setPoint(?int $point): static
+    {
+        $this->point = $point;
 
         return $this;
     }
