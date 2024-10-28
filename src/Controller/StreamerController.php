@@ -60,7 +60,7 @@ class StreamerController extends AbstractController
             if ($tirageStreamer) {
                 $img =$tirageStreamer->getPseudo();
                 $message = "Le streamer tiré au sort est : {$tirageStreamer->getPseudo()} (ID: $tirageStreamerId) avec la rareté {$tirageStreamer->getRarity()}.";
-                $points = $user->setPoint(($points-$price));
+                $points = $user->setPoint(($points-$price)); //c'est une fausse erreur.
                 
                 if ($user) {
                     
