@@ -6,12 +6,12 @@
 
 <h2>Chambre</h2>
 
-<label for="streamer-select">Choisir un Streamer</label>
+<label for="streamer-select">Choisir une Carte</label>
 
 <select name="streamer" id="streamer-select">
 
-{% for streamer in streamers %}
-    <option value="{{ streamer.id }}">{{ streamer.pseudo }}</option>
+{% for card in cards %}
+    <option value="{{ card.id }}">{{ card.name }}</option>
 {% endfor %}
 
 </select>

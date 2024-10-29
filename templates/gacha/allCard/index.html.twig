@@ -8,13 +8,13 @@
 
 
 <div class="streamer-container">
-    {% for rarity, streamers in groupedStreamers %}
+    {% for rarity, cards in groupedCards %}
         <h3>Rareté {{ rarity }}</h2>
         <div class="rarity-group">
-            {% for streamer in streamers %}
+            {% for card in cards %}
                 <div class="streamer-card">
-                    {{ streamer.pseudo }} - Puissance : {{ streamer.stats }}
-                    <img src="Img/{{ streamer.pseudo }}.jpg" alt="Image de {{ streamer.pseudo }}" />
+                    {{ card.name }} - Puissance : {{ card.stats }}
+                    <img src="Img/{{ card.name }}.jpg" alt="Image de {{ card.name }}" />
                 </div>
             {% endfor %}
         </div>

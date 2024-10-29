@@ -7,9 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class AgenceController extends AbstractController
+class DeckController extends AbstractController
 {
-    #[Route('/agence', name: 'app_agence')]
+    #[Route('/deck', name: 'app_deck')]
 
 
     public function index(UserRepository $userRepository): Response
@@ -18,13 +18,13 @@ class AgenceController extends AbstractController
     $user = $this->getUser();
 
     // Récupérer la liste des streamers associés à l'utilisateur
-    $streamers = $user ? $user->getRecrute() : []; //fausse erreur
+    $cards = $user ? $user->getRecrute() : []; //fausse erreur
 
     
 
-    return $this->render('agence/index.html.twig', [
-        'controller_name' => 'AgenceController',
-        'streamers' => $streamers,
+    return $this->render('deck/index.html.twig', [
+        'controller_name' => 'DeckController',
+        'cards' => $cards,
     ]);
 }
 }

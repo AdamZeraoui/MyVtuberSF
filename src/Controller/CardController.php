@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Streamer;
+use App\Entity\Card;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class StreamerController extends AbstractController
+class CardController extends AbstractController
 {
     
     private EntityManagerInterface $entityManager;
@@ -32,13 +32,13 @@ class StreamerController extends AbstractController
         // Vérifier si le formulaire a été soumis
         if ($request->isMethod('POST') && $points > $price) {
 
-            $streamers = $this->entityManager->getRepository(Streamer::class)->findAll();
+            $cards = $this->entityManager->getRepository(Card::class)->findAll();
             
             // Créer un tableau associant chaque ID à sa rareté
-            $streamerArray = [];
-            foreach ($streamers as $streamer) {
-                if ($streamer->getRarity()) {
-                    $streamerArray[$streamer->getId()] = $streamer->getRarity();
+            $cardArray = [];
+            foreach ($cards as $card) {
+                if ($card->getRarity()) {
+                    $cardArray[$card->getId()] = $card->getRarity();
                 }
             }
             
@@ -51,38 +51,38 @@ class StreamerController extends AbstractController
             ];
             
             // Tirage au sort
-            $tirageStreamerId = $this->tirageFromArray($streamerArray, $probabilities);
+            $tirageCardId = $this->tirageFromArray($cardArray, $probabilities);
             
-            // Récupérer le streamer correspondant à l'ID tiré
-            $tirageStreamer = $this->entityManager->getRepository(Streamer::class)->find($tirageStreamerId);
+            // Récupérer le Card correspondant à l'ID tiré
+            $tirageCard = $this->entityManager->getRepository(Card::class)->find($tirageCardId);
 
             
-            if ($tirageStreamer) {
-                $img =$tirageStreamer->getPseudo();
-                $message = "Le streamer tiré au sort est : {$tirageStreamer->getPseudo()} (ID: $tirageStreamerId) avec la rareté {$tirageStreamer->getRarity()}.";
+            if ($tirageCard) {
+                $img =$tirageCard->getName();
+                $message = "La carte tiré au sort est : {$tirageCard->getName()} d'une puissance de {$tirageCard->getStats()} avec une rareté de {$tirageCard->getRarity()}.";
                 $points = $user->setPoint(($points-$price)); //c'est une fausse erreur.
                 
                 if ($user) {
                     
-                    $user->addRecrute($tirageStreamer); //c'est une fausse erreur.
+                    $user->addRecrute($tirageCard); //c'est une fausse erreur.
 
                     $this->entityManager->persist($user);
                     $this->entityManager->flush();
                 }
             } else {
-                $message = "Aucun streamer trouvé.";
+                $message = "Aucun carte trouvé.";
                 $img="null";
             }
 
             
         } else if($points < $price){
             
-            $message = "Vous n'avez pas assez de point pour un tirage. Vous avez :". $points." points. Un tirage coût ". $price." points."; 
-            $img ="null";
+            $message = "Vous n'avez pas assez de point pour une invocation. Vous avez :". $points." points. une invocation coût ". $price." points."; 
+            $img =null;
             
         } else {
-            $message = "Vous avez assez de point pour un tirage. Vous avez :". $points." points. Un tirage coût ". $price ." points."; 
-            $img ="null";
+            $message = "Vous avez assez de point pour une invocation. Vous avez :". $points." points. une invocation coût ". $price ." points."; 
+            $img =null;
         }
         
         return $this->render('gacha/index.html.twig', [
@@ -92,12 +92,12 @@ class StreamerController extends AbstractController
         
     }
 
-    private function tirageFromArray(array $streamers, array $probabilities): int
+    private function tirageFromArray(array $cards, array $probabilities): int
     {
         $weightedItems = [];
 
         // Créer un tableau pondéré
-        foreach ($streamers as $id => $rarity) {
+        foreach ($cards as $id => $rarity) {
             if (isset($probabilities[$rarity])) {
                 $weightedItems = array_merge($weightedItems, array_fill(0, $probabilities[$rarity], $id));
             }
@@ -107,31 +107,31 @@ class StreamerController extends AbstractController
         return $weightedItems[array_rand($weightedItems)];
     }
 
-    #[Route('/allStreamer', name: 'allStreamer')]
-    public function allStreamers(): Response
+    #[Route('/allCard', name: 'allCard')] //changer le nom /!\ !
+    public function allCards(): Response
     {
 
-        $streamers = $this->entityManager->getRepository(Streamer::class)->findAll();
+        $cards = $this->entityManager->getRepository(Card::class)->findAll();
 
-    // Regrouper les streamers par rareté
-    $groupedStreamers = [
+    // Regrouper les Cards par rareté
+    $groupedCards = [
         'S' => [],
         'A' => [],
         'B' => [],
         'C' => [],
     ];
 
-    foreach ($streamers as $streamer) {
-        $rarity = $streamer->getRarity();
-        $groupedStreamers[$rarity][] = $streamer;
+    foreach ($cards as $card) {
+        $rarity = $card->getRarity();
+        $groupedCards[$rarity][] = $card;
     }
 
 
         // Cela va rendre un template Twig pour la page d'accueil
-        return $this->render('gacha/allStreamer/index.html.twig', [
-            'controller_name' => 'AllStreamerController',
-            'streamers' => $streamers,
-            'groupedStreamers' => $groupedStreamers,
+        return $this->render('gacha/allCard/index.html.twig', [
+            'controller_name' => 'AllCardController',
+            'cards' => $cards,
+            'groupedCards' => $groupedCards,
         ]
     );}
 }

@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\AgenceRepository;
+use App\Repository\DeckRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AgenceRepository::class)]
-class Agence
+#[ORM\Entity(repositoryClass: DeckRepository::class)]
+class Deck
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -24,18 +24,18 @@ class Agence
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $grade = null;
 
-    #[ORM\OneToOne(mappedBy: 'agence', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'deck', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
     /**
-     * @var Collection<int, Chambre>
+     * @var Collection<int, Mat>
      */
-    #[ORM\OneToMany(targetEntity: Chambre::class, mappedBy: 'agence')]
-    private Collection $chambres;
+    #[ORM\OneToMany(targetEntity: Mat::class, mappedBy: 'deck')]
+    private Collection $mats;
 
     public function __construct()
     {
-        $this->chambres = new ArrayCollection();
+        $this->mats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -87,8 +87,8 @@ class Agence
     public function setUser(User $user): static
     {
         // set the owning side of the relation if necessary
-        if ($user->getAgence() !== $this) {
-            $user->setAgence($this);
+        if ($user->getDeck() !== $this) {
+            $user->setDeck($this);
         }
 
         $this->user = $user;
@@ -97,29 +97,29 @@ class Agence
     }
 
     /**
-     * @return Collection<int, Chambre>
+     * @return Collection<int, Mat>
      */
-    public function getChambres(): Collection
+    public function getMats(): Collection
     {
-        return $this->chambres;
+        return $this->mats;
     }
 
-    public function addChambre(Chambre $chambre): static
+    public function addMat(Mat $mat): static
     {
-        if (!$this->chambres->contains($chambre)) {
-            $this->chambres->add($chambre);
-            $chambre->setAgence($this);
+        if (!$this->mats->contains($mat)) {
+            $this->mats->add($mat);
+            $mat->setDeck($this);
         }
 
         return $this;
     }
 
-    public function removeChambre(Chambre $chambre): static
+    public function removeMat(Mat $mat): static
     {
-        if ($this->chambres->removeElement($chambre)) {
+        if ($this->mats->removeElement($mat)) {
             // set the owning side to null (unless already changed)
-            if ($chambre->getAgence() === $this) {
-                $chambre->setAgence(null);
+            if ($mat->getDeck() === $this) {
+                $mat->setDeck(null);
             }
         }
 

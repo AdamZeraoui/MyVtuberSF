@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\StreamerRepository;
+use App\Repository\CardRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: StreamerRepository::class)]
-class Streamer
+#[ORM\Entity(repositoryClass: CardRepository::class)]
+class Card
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,7 +17,7 @@ class Streamer
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $pseudo = null;
+    private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $stats = null;
@@ -32,15 +32,15 @@ class Streamer
     private Collection $users;
 
     /**
-     * @var Collection<int, Chambre>
+     * @var Collection<int, Mat>
      */
-    #[ORM\OneToMany(targetEntity: Chambre::class, mappedBy: 'streamer')]
-    private Collection $chambre;
+    #[ORM\OneToMany(targetEntity: Mat::class, mappedBy: 'card')]
+    private Collection $mat;
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
-        $this->chambre = new ArrayCollection();
+        $this->mat = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -48,14 +48,14 @@ class Streamer
         return $this->id;
     }
 
-    public function getPseudo(): ?string
+    public function getName(): ?string
     {
-        return $this->pseudo;
+        return $this->name;
     }
 
-    public function setPseudo(string $pseudo): static
+    public function setName(string $name): static
     {
-        $this->pseudo = $pseudo;
+        $this->name = $name;
 
         return $this;
     }
@@ -112,29 +112,29 @@ class Streamer
     }
 
     /**
-     * @return Collection<int, Chambre>
+     * @return Collection<int, Mat>
      */
-    public function getChambre(): Collection
+    public function getMat(): Collection
     {
-        return $this->chambre;
+        return $this->mat;
     }
 
-    public function addChambre(Chambre $chambre): static
+    public function addMat(Mat $mat): static
     {
-        if (!$this->chambre->contains($chambre)) {
-            $this->chambre->add($chambre);
-            $chambre->setStreamer($this);
+        if (!$this->mat->contains($mat)) {
+            $this->mat->add($mat);
+            $mat->setCard($this);
         }
 
         return $this;
     }
 
-    public function removeChambre(Chambre $chambre): static
+    public function removeMat(Mat $mat): static
     {
-        if ($this->chambre->removeElement($chambre)) {
+        if ($this->mat->removeElement($mat)) {
             // set the owning side to null (unless already changed)
-            if ($chambre->getStreamer() === $this) {
-                $chambre->setStreamer(null);
+            if ($mat->getCard() === $this) {
+                $mat->setCard(null);
             }
         }
 
@@ -143,7 +143,6 @@ class Streamer
 
     public function __toString(): string
     {
-        // Retourner une représentation textuelle du Streamer, comme son pseudo
-        return $this->getPseudo();
+        return $this->getName();
     }
 }

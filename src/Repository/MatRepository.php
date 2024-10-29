@@ -2,22 +2,22 @@
 
 namespace App\Repository;
 
-use App\Entity\Chambre;
+use App\Entity\Mat;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Chambre>
+ * @extends ServiceEntityRepository<Mat>
  */
-class ChambreRepository extends ServiceEntityRepository
+class MatRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Chambre::class);
+        parent::__construct($registry, Mat::class);
     }
 
     //    /**
-    //     * @return Chambre[] Returns an array of Chambre objects
+    //     * @return Mat[] Returns an array of Mat objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -31,7 +31,7 @@ class ChambreRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Chambre
+    //    public function findOneBySomeField($value): ?Mat
     //    {
     //        return $this->createQueryBuilder('c')
     //            ->andWhere('c.exampleField = :val')

@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ChambreRepository;
+use App\Repository\MatRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ChambreRepository::class)]
-class Chambre
+#[ORM\Entity(repositoryClass: MatRepository::class)]
+class Mat
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -22,11 +22,11 @@ class Chambre
     #[ORM\Column(nullable: true)]
     private ?int $view = null;
 
-    #[ORM\ManyToOne(inversedBy: 'chambre')]
-    private ?Streamer $streamer = null;
+    #[ORM\ManyToOne(inversedBy: 'mat')]
+    private ?Card $card = null;
 
-    #[ORM\ManyToOne(inversedBy: 'chambres')]
-    private ?Agence $agence = null;
+    #[ORM\ManyToOne(inversedBy: 'mats')]
+    private ?Deck $deck = null;
 
     public function getId(): ?int
     {
@@ -69,26 +69,26 @@ class Chambre
         return $this;
     }
 
-    public function getStreamer(): ?Streamer
+    public function getCard(): ?Card
     {
-        return $this->streamer;
+        return $this->card;
     }
 
-    public function setStreamer(?Streamer $streamer): static
+    public function setCard(?Card $card): static
     {
-        $this->streamer = $streamer;
+        $this->card = $card;
 
         return $this;
     }
 
-    public function getAgence(): ?Agence
+    public function getDeck(): ?Deck
     {
-        return $this->agence;
+        return $this->deck;
     }
 
-    public function setAgence(?Agence $agence): static
+    public function setDeck(?Deck $deck): static
     {
-        $this->agence = $agence;
+        $this->deck = $deck;
 
         return $this;
     }

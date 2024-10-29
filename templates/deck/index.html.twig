@@ -7,14 +7,14 @@
     <h1>Hello {{ controller_name }}! ✅</h1>
 
     <h2>Your Streamers:</h2>
-    {% if streamers is empty %}
+    {% if cards is empty %}
         <p>You have no streamers.</p>
     {% else %}
         <div class="streamer-container">
-            {% for streamer in streamers %}
+            {% for card in cards %}
                 <div class="streamer-card">
-                    <p>{{ streamer.pseudo }} ({{ streamer.rarity }})</p>
-                    <img src="Img/{{ streamer.pseudo }}.jpg" alt="Image de {{ streamer.pseudo }}" />
+                    <p>{{ card.name }} ({{ card.rarity }})</p>
+                    <img src="Img/{{ card.name }}.jpg" alt="Image de {{ card.name }}" />
                 </div>
             {% endfor %}
         </div>

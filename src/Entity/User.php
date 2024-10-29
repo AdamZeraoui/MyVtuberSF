@@ -43,12 +43,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Agence $agence = null;
+    private ?Deck $deck = null;
 
     /**
-     * @var Collection<int, Streamer>
+     * @var Collection<int, Card>
      */
-    #[ORM\ManyToMany(targetEntity: Streamer::class, inversedBy: 'users')]
+    #[ORM\ManyToMany(targetEntity: Card::class, inversedBy: 'users')]
     private Collection $recrute;
 
     /**
@@ -165,27 +165,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAgence(): ?Agence
+    public function getDeck(): ?Deck
     {
-        return $this->agence;
+        return $this->deck;
     }
 
-    public function setAgence(Agence $agence): static
+    public function setDeck(Deck $deck): static
     {
-        $this->agence = $agence;
+        $this->deck = $deck;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Streamer>
+     * @return Collection<int, Card>
      */
     public function getRecrute(): Collection
     {
         return $this->recrute;
     }
 
-    public function addRecrute(Streamer $recrute): static
+    public function addRecrute(Card $recrute): static
     {
         if (!$this->recrute->contains($recrute)) {
             $this->recrute->add($recrute);
@@ -194,7 +194,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeRecrute(Streamer $recrute): static
+    public function removeRecrute(Card $recrute): static
     {
         $this->recrute->removeElement($recrute);
 
