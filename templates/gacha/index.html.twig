@@ -7,8 +7,8 @@
 
 <div class="tirage">
     
-    <form action="{{ path('gacha') }}" method="POST" data-turbo="false">
-        <button type="submit">Invocation</button>
+    <form id="gachaForm" action="{{ path('gacha') }}" method="POST" data-turbo="false">
+        <button class="bubbly-button" type="submit">Invocation</button>
     </form>
 
     {# Afficher le résultat du tirage #}

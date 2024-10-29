@@ -59,8 +59,8 @@ class CardController extends AbstractController
             
             if ($tirageCard) {
                 $img =$tirageCard->getName();
-                $message = "La carte tiré au sort est : {$tirageCard->getName()} d'une puissance de {$tirageCard->getStats()} avec une rareté de {$tirageCard->getRarity()}.";
                 $points = $user->setPoint(($points-$price)); //c'est une fausse erreur.
+                $message = "La carte tiré au sort est : {$tirageCard->getName()} d'une puissance de {$tirageCard->getStats()} avec une rareté de {$tirageCard->getRarity()}. Il vous reste : {$user->getPoint($points)} points.";
                 
                 if ($user) {
                     
