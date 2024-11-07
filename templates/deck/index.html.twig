@@ -12,9 +12,9 @@
     {% else %}
         <div class="streamer-container">
             {% for card in cards %}
-                <div class="streamer-card">
+                <div class="streamer-card cards">
                     <p>{{ card.name }} ({{ card.rarity }})</p>
-                    <img src="Img/{{ card.name }}.jpg" alt="Image de {{ card.name }}" />
+                    <img class="card animated" src="Img/{{ card.name }}.jpg" alt="Image de {{ card.name }}" />
                 </div>
             {% endfor %}
         </div>

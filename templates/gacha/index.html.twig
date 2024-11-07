@@ -15,7 +15,7 @@
     {% if message %}
         <p>{{ message }}</p>
         {% if img != null %}
-        <img src="Img/{{ img }}.jpg" alt="Image de {{ img }}" />
+        <div class ="cards"><img class="card colorcard active animated" src="Img/{{ img }}.jpg" alt="Image de {{ img }}" /></div>
         {% endif %}
     {% endif %}
 
@@ -24,20 +24,20 @@
 
     <div id="carouselExampleAutoplaying" class="carousel slide mx-auto" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{{ asset('Img/Emperor.jpg') }}" class="d-block" alt="streamer1">
+            <div class="carousel-item actived cards">
+                <img src="{{ asset('Img/Emperor.jpg') }}" class="card colorcard animated d-block" alt="streamer1">
             </div>
-            <div class="carousel-item">
-                <img src="{{ asset('Img/Hierophant.jpg') }}" class="d-block" alt="streamer2">
+            <div class="carousel-item cards">
+                <img src="{{ asset('Img/Hierophant.jpg') }}" class="card colorcard animated d-block" alt="streamer2">
             </div>
-            <div class="carousel-item">
-                <img src="{{ asset('Img/Lover.jpg') }}" class="d-block" alt="streamer3">
+            <div class="carousel-item cards">
+                <img src="{{ asset('Img/Lover.jpg') }}" class="d-block colorcard card animated" alt="streamer3">
             </div>
-            <div class="carousel-item">
-                <img src="{{ asset('Img/Tower.jpg') }}" class="d-block" alt="streamer4">
+            <div class="carousel-item cards">
+                <img  src="{{ asset('Img/Tower.jpg') }}" class="d-block colorcard card animated" alt="streamer4">
             </div>
-            <div class="carousel-item">
-                <img src="{{ asset('Img/Judgement.jpg') }}" class="d-block" alt="streamer5">
+            <div class="carousel-item cards">
+                <img src="{{ asset('Img/Judgement.jpg') }}" class="d-block colorcard card animated" alt="streamer5">
             </div>
         </div>
         <button class=" button-carousel left" type="button" data-bs-target="#carouselExampleAutoplaying"
