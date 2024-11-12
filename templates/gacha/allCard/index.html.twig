@@ -1,20 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello StreamerController!{% endblock %}
+{% block title %}Toute les cartes{% endblock %}
 
 
 
 {% block body %}
 
+<h1>La Collection Complète</h1>
 
 <div class="streamer-container">
     {% for rarity, cards in groupedCards %}
-        <h3>Rareté {{ rarity }}</h2>
-        <div class="rarity-group">
+        <h2>Rareté {{ rarity }}</h2>
+        <div class="rarity-group cards">
             {% for card in cards %}
                 <div class="streamer-card">
                     {{ card.name }} - Puissance : {{ card.stats }}
-                    <img src="Img/{{ card.name }}.jpg" alt="Image de {{ card.name }}" />
+                    <img src="Img/{{ card.name }}.jpg" class="card colorcard animated hover" alt="Image de {{ card.name }}" />
                 </div>
             {% endfor %}
         </div>

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello StreamerController!{% endblock %}
+{% block title %}Invocation{% endblock %}
 
 {% block body %}
 
@@ -22,33 +22,25 @@
     {% if img is null %}
     <h1>Bannière du moment</h1>
 
-    <div id="carouselExampleAutoplaying" class="carousel slide mx-auto" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item actived cards">
-                <img src="{{ asset('Img/Emperor.jpg') }}" class="card colorcard animated d-block" alt="streamer1">
+
+        
+            <div class=" cards">
+                <img src="{{ asset('Img/Emperor.jpg') }}" class="card colorcard hover animated " alt="streamer1">
             </div>
-            <div class="carousel-item cards">
-                <img src="{{ asset('Img/Hierophant.jpg') }}" class="card colorcard animated d-block" alt="streamer2">
+            <div class=" cards">
+                <img src="{{ asset('Img/Hierophant.jpg') }}" class="card colorcard hover animated " alt="streamer2">
             </div>
-            <div class="carousel-item cards">
-                <img src="{{ asset('Img/Lover.jpg') }}" class="d-block colorcard card animated" alt="streamer3">
+            <div class=" cards">
+                <img src="{{ asset('Img/Lover.jpg') }}" class=" colorcard hover card animated" alt="streamer3">
             </div>
-            <div class="carousel-item cards">
-                <img  src="{{ asset('Img/Tower.jpg') }}" class="d-block colorcard card animated" alt="streamer4">
+            <div class=" cards">
+                <img  src="{{ asset('Img/Tower.jpg') }}" class=" colorcard hover card animated" alt="streamer4">
             </div>
-            <div class="carousel-item cards">
-                <img src="{{ asset('Img/Judgement.jpg') }}" class="d-block colorcard card animated" alt="streamer5">
+            <div class=" cards">
+                <img src="{{ asset('Img/Judgement.jpg') }}" class=" colorcard hover card animated" alt="streamer5">
             </div>
-        </div>
-        <button class=" button-carousel left" type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="prev">
-            <span class="icon-left" aria-hidden="true"><i class="fa-solid fa-arrow-left"></i></span>
-        </button>
-        <button class=" button-carousel right" type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="next">
-            <span class="icon-right" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
-        </button>
-    </div>
+        
+
     {% endif %}
 
 </div>

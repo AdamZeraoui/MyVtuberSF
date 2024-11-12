@@ -11,6 +11,9 @@
 
     width: 71.5vw;
     height: 100vw;
+    position: relative;
+    overflow: hidden;
+    margin: 20px;
 
     // width: clamp(200px, 61vh, 18vw);
     // height: clamp(280px, 85vh, 25.2vw);
@@ -23,11 +26,8 @@
         height: clamp(18vw, 85vh, 25.2vw);
     }
 
-    position: relative;
     overflow: hidden;
-    margin: 20px;
-    overflow: hidden;
-    z-index: 10;
+    z-index: 1;
     touch-action: none;
 
     border-radius: 5% / 3.5%;
