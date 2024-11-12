@@ -19,9 +19,14 @@ body {
     /* S'assurer que les éléments commencent en haut */
     align-items: center;
     height: 100vh;
+
     text-align: center;
-    background-color: #f8bed6;
+    /* background-color: #f8bed6; */
+    background-size:cover; /* Pour couvrir l'ensemble du container */
+    background-position: center; /* Centrer l'image */
+    background-image: url("/Img/LunarBG.png");
 }
+
 
 .header-image {
     width: 100%;
@@ -36,11 +41,10 @@ body {
 }
 
 .main-content {
-    width: calc(100% - 80px);
-    margin-left: 80px;
+    width: 100%;
     flex-direction: column;
     box-sizing: content-box;
-    overflow: hidden;
+
 }
 
 h1 {
@@ -69,45 +73,31 @@ h1 {
 
 .nav-container {
     max-height: 100vh;
-}
-
-.navbar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 80px;
-    background-color: #ffffff;
-    z-index: 1000;
+    position:absolute;
+    bottom: 0;
+    z-index: 2;
 }
 
 .navbar .navbar-nav {
-    flex-direction: column;
-    padding-top: 5px;
+    flex-direction: row;
 }
 
 .navbar .nav-link {
     color: #000;
-    font-size: 18px;
+    font-size: 10px;
 }
 
 .navbar .nav-link:hover {
     background-color: #e2e6ea;
 }
 
-.navbar .nav-item {
-
-    padding-left: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.nav-link i {
+    color: #000;
+    font-size: 50px;
 }
 
-.nav-link i {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    color: #000;
-    font-size: 20px;
+.nav-link{
+    text-decoration: none;
 }
 
 .tirage {
