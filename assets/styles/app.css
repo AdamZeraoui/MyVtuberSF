@@ -19,7 +19,7 @@ body {
     /* S'assurer que les éléments commencent en haut */
     align-items: center;
     height: 100vh;
-
+    justify-content: center;
     text-align: center;
     /* background-color: #f8bed6; */
     background-size:cover; /* Pour couvrir l'ensemble du container */
@@ -94,10 +94,29 @@ h1 {
 .nav-link i {
     color: #000;
     font-size: 50px;
+    margin-bottom: 25px;
 }
 
 .nav-link{
     text-decoration: none;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.logo{
+    width: 45%;
+    height: 45%;
+    margin-bottom: -140px;
+}
+
+
+.intro{
+    position: absolute;
+    box-sizing: content-box;
+    width: 35%;
+    font-size: 25px;
+    margin-left: 30px;
+
 }
 
 .tirage {
@@ -114,8 +133,6 @@ h1 {
     display: block;
     margin: auto;
 }
-
-
 
 .agence {
     text-align: center;
