@@ -23,22 +23,18 @@
     <h1>Bannière du moment</h1>
 
 
-        
-            <div class=" cards">
-                <img src="{{ asset('Img/Emperor.jpg') }}" class="card colorcard hover animated " alt="streamer1">
-            </div>
-            <div class=" cards">
-                <img src="{{ asset('Img/Hierophant.jpg') }}" class="card colorcard hover animated " alt="streamer2">
-            </div>
-            <div class=" cards">
-                <img src="{{ asset('Img/Lover.jpg') }}" class=" colorcard hover card animated" alt="streamer3">
-            </div>
-            <div class=" cards">
-                <img  src="{{ asset('Img/Tower.jpg') }}" class=" colorcard hover card animated" alt="streamer4">
-            </div>
-            <div class=" cards">
-                <img src="{{ asset('Img/Judgement.jpg') }}" class=" colorcard hover card animated" alt="streamer5">
-            </div>
+    <div class="carousel">
+        <div class="carousel-inner">
+            {% for card in cards %}
+                <div class="caroussel-item cards">
+                    <img src="Img/{{asset(card.name)}}.jpg" alt="{{card.name}}" class="card colorcard hover animated">
+                </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-bouton prev" onclick="moveSlide(-1)">←</button>
+        <button class="carousel-bouton next" onclick="moveSlide(1)">→</button>
+    </div>
+
         
 
     {% endif %}

@@ -113,3 +113,30 @@ $cards
             $card.addClass("animated");
         }, 2500);
     });
+
+    let slideIndex = 0;
+
+    function showSlides(n) {
+        let slides = document.querySelectorAll('.caroussel-item');
+        if (n >= slides.length) { slideIndex = 0; }
+        if (n < 0) { slideIndex = slides.length - 1; }
+        slides.forEach((slide, index) => {
+            slide.style.display = (index === slideIndex) ? 'block' : 'none';
+        });
+    }
+    
+    function moveSlide(n) {
+        showSlides(slideIndex += n);
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        showSlides(slideIndex);
+    
+        document.querySelector('.prev').addEventListener('click', () => moveSlide(-1));
+        document.querySelector('.next').addEventListener('click', () => moveSlide(1));
+
+        setInterval(() => {
+            moveSlide(1); 
+        }, 15000);
+    });
+    

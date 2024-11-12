@@ -28,11 +28,12 @@ class CardController extends AbstractController
         $user = $this->getUser();
         $points = $user->getPoint() ;
         $price = 550;
-
+        $cards = $this->entityManager->getRepository(Card::class)->findAll();
+        
         // Vérifier si le formulaire a été soumis
         if ($request->isMethod('POST') && $points > $price) {
 
-            $cards = $this->entityManager->getRepository(Card::class)->findAll();
+            
             
             // Créer un tableau associant chaque ID à sa rareté
             $cardArray = [];
@@ -86,9 +87,14 @@ class CardController extends AbstractController
         }
         
         return $this->render('gacha/index.html.twig', [
-            'message' => $message,'img'=>$img
+            'message' => $message,'img'=>$img, 'cards'=>$cards
             ,
         ]);
+
+
+
+
+        
         
     }
 
@@ -134,4 +140,5 @@ class CardController extends AbstractController
             'groupedCards' => $groupedCards,
         ]
     );}
+
 }

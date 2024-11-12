@@ -110,57 +110,6 @@ h1 {
     font-size: 20px;
 }
 
-.carousel {
-    width: 100%;
-    height: calc(100vh - 15vh);
-    /* Adapter la hauteur du carrousel pour tenir dans l'écran */
-    max-height: 80vh;
-    /* Limite le carrousel pour qu'il prenne jusqu'à 70% de la hauteur */
-    position: relative;
-}
-
-.carousel-item {
-    height: 100%;
-    max-height: 80vh;
-}
-
-.carousel-item img {
-    max-width: 100%;
-    height: auto;
-    max-height: 70vh;
-    object-fit: contain;
-    display: block;
-    margin: auto;
-}
-
-.button-carousel {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.7);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.button-carousel.left {
-    left: 150px;
-}
-
-.button-carousel.right {
-    right: 150px;
-}
-
-.button-carousel:hover {
-    background-color: rgba(255, 255, 255, 0.9);
-}
-
 .tirage {
     margin-top: 25px;
 
@@ -288,6 +237,47 @@ h1 {
     display: block;
     animation: bottomBubbles ease-in-out 0.75s forwards;
 }
+
+.carousel {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.caroussel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.carousel-bouton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.carousel-bouton.prev {
+    left: 0;
+    z-index: 1000;
+}
+
+.carousel-bouton.next {
+    right: 0;
+    z-index: 1000;
+}
+
+
 
 @keyframes topBubbles {
     0% {
