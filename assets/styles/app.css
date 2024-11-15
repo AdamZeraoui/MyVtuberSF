@@ -111,6 +111,7 @@ h1 {
 }
 
 .logo{
+
     width: 45%;
     height: 45%;
     margin-bottom: -140px;
@@ -130,6 +131,8 @@ h1 {
 }
 
 .intro p{
+    font-family: 'Corben', serif;
+
     color : whitesmoke
     /* rbga(221,229,237,1); */
 }
@@ -331,3 +334,9 @@ h1 {
     }
 }
 
+@font-face {
+    font-family: 'Corben';
+    src: url('/font/Corben/Corben-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
