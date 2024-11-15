@@ -24,7 +24,8 @@ body {
     /* background-color: #f8bed6; */
     background-size:cover; /* Pour couvrir l'ensemble du container */
     background-position: center; /* Centrer l'image */
-    background-image: url("/Img/LunarBG.png");
+    background-image: linear-gradient(rgba(64, 56, 69, 0.25), rgba(64, 56, 59, 0.55))
+    ,url("/Img/LunarBG.png");
 }
 
 
@@ -87,20 +88,26 @@ h1 {
     font-size: 10px;
 }
 
-.navbar .nav-link:hover {
-    background-color: #e2e6ea;
-}
 
 .nav-link i {
     color: #000;
     font-size: 50px;
     margin-bottom: 25px;
+    
 }
 
-.nav-link{
+.nav-link{    
     text-decoration: none;
+    outline : none;
+    border: none;
     padding-left: 40px;
     padding-right: 40px;
+}
+
+.nav-link:hover{
+    text-decoration: none;
+    outline : none;
+    border: none;
 }
 
 .logo{
@@ -113,10 +120,18 @@ h1 {
 .intro{
     position: absolute;
     box-sizing: content-box;
-    width: 35%;
-    font-size: 25px;
-    margin-left: 30px;
 
+    font-size: 25px;
+    margin-left: 200px;
+    background-color: rgb(64,56,69, 0.75) ;
+    padding: 15px;
+    border-radius:50px ;
+
+}
+
+.intro p{
+    color : whitesmoke
+    /* rbga(221,229,237,1); */
 }
 
 .tirage {
